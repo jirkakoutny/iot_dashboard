@@ -34,10 +34,32 @@ class App extends Component {
 
   componentDidMount() {
     const msgRef = firebase.database().ref().child('messages');
+    var initialDataLoaded = false;
+
     msgRef.on('child_added', snap => {
+      if (initialDataLoaded) {
+        this.setState({
+          messages: this.state.messages.concat([snap.val()])
+        });
+      }
+      else {
+
+      }
+    });
+
+    msgRef.on('value', snap => {
+      console.log('Data');
+      console.log(snap.val());
+      var arr = [];
+      var data = snap.val();
+      for (var prop in data) {
+        arr.push(data[prop]);
+      }
+      console.log(arr);
       this.setState({
-        messages: this.state.messages.concat([snap.val()])
+        messages: arr
       });
+      initialDataLoaded = true;
     });
   }
 
