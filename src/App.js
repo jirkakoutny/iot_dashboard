@@ -4,6 +4,8 @@ import './App.css';
 import ReactDOM from 'react-dom';
 import MessageRow from './MessageRow';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+
 
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
@@ -48,14 +50,11 @@ class App extends Component {
     });
 
     msgRef.on('value', snap => {
-      console.log('Data');
-      console.log(snap.val());
       var arr = [];
       var data = snap.val();
       for (var prop in data) {
         arr.push(data[prop]);
       }
-      console.log(arr);
       this.setState({
         messages: arr
       });
@@ -72,12 +71,22 @@ class App extends Component {
 
     return (
       <div className="App">
+
         <MuiThemeProvider>
+          <AppBar
+            title="JirKa IoT Dashboard"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            />
+        </MuiThemeProvider>
+        <MuiThemeProvider>
+
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHeaderColumn>DeviceId</TableHeaderColumn>
-                <TableHeaderColumn>WindSpeed</TableHeaderColumn>
+                <TableHeaderColumn>EventTime</TableHeaderColumn>
+                <TableHeaderColumn>Humidity</TableHeaderColumn>
+                <TableHeaderColumn>MTemperature</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody>{rows}</TableBody>
