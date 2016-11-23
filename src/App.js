@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import moment from 'moment';
+
 import ReactDOM from 'react-dom';
 import { Image, Button, Card, Icon, Statistic, Grid } from 'semantic-ui-react'
 
@@ -62,7 +64,8 @@ class App extends Component {
 
 
   render() {
-
+var lastValues = moment([2016, 10, 23, 14, 23, 21]).fromNow();
+console.log(lastValues);
     return (
       <div className="ui one column center aligned grid">
         <div className="column ten wide form-holder">
@@ -98,10 +101,8 @@ class App extends Component {
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <a>
                 <Icon name='wait' />
-                11.11.2016 12:23
-      </a>
+                {lastValues}
             </Card.Content>
           </Card>
 
