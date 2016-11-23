@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 
 import ReactDOM from 'react-dom';
-import MessageRow from './MessageRow';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+import { Image, Button, Card, Icon, Statistic, Grid } from 'semantic-ui-react'
 
-
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import logo from '../public/img/logo.png'
 
 import * as firebase from 'firebase';
 
@@ -62,36 +59,105 @@ class App extends Component {
     });
   }
 
-  render() {
-    var rows = [];
-    this.state.messages.forEach(function (message) {
-      rows.push(<MessageRow message={message} />);
-    });
 
+
+  render() {
 
     return (
-      <div className="App">
+      <div className="ui one column center aligned grid">
+        <div className="column ten wide form-holder">
+          <Image src={logo} centered />
+          <h2 className="center aligned header form-head">Zasedačka IT</h2>
+          <Card centered>
+            <Card.Content>
+              <Card.Header>
+                Aktuální stav
+      </Card.Header>
+              <Card.Description>
 
-        <MuiThemeProvider>
-          <AppBar
-            title="JirKa IoT Dashboard"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-            />
-        </MuiThemeProvider>
-        <MuiThemeProvider>
+                <Grid>
+                  <Grid.Row>
+                    <Grid.Column width={8}>
+                      <Statistic size='tiny' value='22 °C' label='Teplota' />
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                      <Statistic size='tiny' value='50 %' label='Vlkhost' />
+                    </Grid.Column>
+                  </Grid.Row>
 
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHeaderColumn>DeviceId</TableHeaderColumn>
-                <TableHeaderColumn>EventTime</TableHeaderColumn>
-                <TableHeaderColumn>Humidity</TableHeaderColumn>
-                <TableHeaderColumn>MTemperature</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody>{rows}</TableBody>
-          </Table>
-        </MuiThemeProvider>
+                  <Grid.Row>
+                    <Grid.Column width={8}>
+                      <Statistic size='tiny' value='20 %' label='Světla' />
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                      <Statistic size='tiny' value='NE' label='Pohyb' />
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <a>
+                <Icon name='wait' />
+                11.11.2016 12:23
+      </a>
+            </Card.Content>
+          </Card>
+
+          <Card centered>
+            <Card.Content>
+              <Card.Header>
+                Světla
+        </Card.Header>
+
+            </Card.Content>
+
+            <Card.Content extra>
+              <div className='ui two buttons'>
+                <Button basic color='green'>Zapnout</Button>
+                <Button basic color='red'>Vypnout</Button>
+              </div>
+            </Card.Content>
+          </Card>
+          <Card centered>
+            <Card.Content>
+              <Card.Header>
+                Klimatizace
+        </Card.Header>
+            </Card.Content>
+            <Card.Content extra>
+
+              <Card.Content extra>
+
+                <div className='ui two buttons'>
+                  <Button content='Chladněji' icon='minus' labelPosition='right' color="blue" />
+                  <Button content='Tepleji' icon='plus' labelPosition='left' color="orange" />
+                </div>
+              </Card.Content>
+            </Card.Content>
+            <Card.Content extra>
+
+              <div className='ui two buttons'>
+                <Button basic color='green'>Zapnout</Button>
+                <Button basic color='red'>Vypnout</Button>
+              </div>
+            </Card.Content>
+          </Card>
+          <Card centered>
+            <Card.Content>
+              <Card.Header>
+                Projektor
+        </Card.Header>
+            </Card.Content>
+            <Card.Content extra>
+              <div className='ui two buttons'>
+                <Button basic color='green'>Zapnout</Button>
+                <Button basic color='red'>Vypnout</Button>
+              </div>
+            </Card.Content>
+          </Card>
+        </div>
       </div>
     );
   }
