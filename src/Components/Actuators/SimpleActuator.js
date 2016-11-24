@@ -2,17 +2,24 @@ import React, { Component } from 'react';
 
 import { Card } from 'semantic-ui-react'
 
+import Action from './Action'
 import OnOff from './OnOff'
 
-class Presenter extends Component {
+class SimpleActuator extends Component {
     render() {
+        var actions = [];
+        this.props.data.actions.forEach(x => {
+            actions.push(<Action data={x} key={x.name}></Action>);
+        });
+        console.log(this.props.data);
         return (
             <Card centered>
                 <Card.Content>
                     <Card.Header>
-                        Projektor
-                </Card.Header>
+                        {this.props.data.name}
+                    </Card.Header>
                 </Card.Content>
+                {actions}
                 <Card.Content extra>
                     <OnOff></OnOff>
                 </Card.Content>
@@ -21,4 +28,4 @@ class Presenter extends Component {
     }
 }
 
-export default Presenter;
+export default SimpleActuator;
