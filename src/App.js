@@ -68,7 +68,7 @@ class App extends Component {
                 actions: [
                     {
                         name: 'Teplota',
-                        left: 'Chladněií',
+                        left: 'Chladněji',
                         right: 'Tepleji'
                     }
                 ]

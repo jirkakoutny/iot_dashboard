@@ -11,7 +11,6 @@ class SimpleActuator extends Component {
         this.props.data.actions.forEach(x => {
             actions.push(<Action data={x} key={x.name}></Action>);
         });
-        console.log(this.props.data);
         return (
             <Card centered>
                 <Card.Content>

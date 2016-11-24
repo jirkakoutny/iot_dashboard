@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import SimpleActuator from './Actuators/SimpleActuator'
 import RoomState from './Status/RoomState'
+import GeneralOnOff from './Actuators/GeneralOnOff'
 
 class Room extends Component {
     render() {
@@ -14,6 +15,7 @@ class Room extends Component {
                 <h2 className="center aligned header form-head">{this.props.data.name}</h2>
                 <RoomState data={this.props.data.state}></RoomState>
                 {actuators}
+                <GeneralOnOff data={actuators}></GeneralOnOff>
             </div>
         );
     }
