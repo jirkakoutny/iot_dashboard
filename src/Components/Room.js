@@ -15,7 +15,7 @@ class Room extends Component {
                 <h2 className="center aligned header form-head">{this.props.data.name}</h2>
                 <RoomState data={this.props.data.state}></RoomState>
                 {actuators}
-                <GeneralOnOff data={actuators}></GeneralOnOff>
+                <GeneralOnOff data={actuators}></GeneralOnOff>                
             </div>
         );
     }

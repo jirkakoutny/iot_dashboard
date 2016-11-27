@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Card } from 'semantic-ui-react'
+import { Card, Header } from 'semantic-ui-react'
 
 import Action from './Action'
 import OnOff from './OnOff'
@@ -15,12 +15,12 @@ class SimpleActuator extends Component {
             <Card centered>
                 <Card.Content>
                     <Card.Header>
-                        {this.props.data.name}
+                        <Header as='h3'>{this.props.data.name}</Header>
                     </Card.Header>
                 </Card.Content>
                 {actions}
                 <Card.Content extra>
-                    <OnOff></OnOff>
+                    <OnOff data={this.props.data.name}></OnOff>
                 </Card.Content>
             </Card>
         );
