@@ -25,8 +25,16 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            messages: []
+            room: null
         };
+    }
+
+    componentDidMount() {
+        const msgRef = firebase.database().ref().child('rooms/zasedacka_it');
+        msgRef.on('value', snap => {
+            this.setState({ room: snap.val() });
+            console.log('Data loaded...');
+        });
     }
 
     // componentDidMount() {
@@ -58,43 +66,11 @@ class App extends Component {
     // }
 
     render() {
-        var actuators = [
-            {
-                name: 'Světla',
-                actions: []
-            },
-            {
-                name: 'Klimatizace',
-                actions: [
-                    {
-                        name: 'Teplota',
-                        left: 'Chladněji',
-                        right: 'Tepleji'
-                    }
-                ]
-            },
-            {
-                name: 'Projektor',
-                actions: []
-            }
-        ];
-        var currentState = {
-            temperature: 22,
-            humidity: 50,
-            light: 20,
-            move: false,
-            timestamp: '14 minutes ago'
-        };
-        var room = {
-            name: 'Zasedačka IT',
-            state: currentState,
-            actuators: actuators
-        };
         return (
             <div className="ui one column center aligned grid">
                 <div className="column ten wide form-holder">
                     <Image src={logo} centered />
-                    <Room data={room}></Room>
+                    <Room data={this.state.room}></Room>
                 </div>
             </div>
         );

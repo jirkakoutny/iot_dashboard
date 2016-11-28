@@ -7,15 +7,26 @@ import GeneralOnOff from './Actuators/GeneralOnOff'
 class Room extends Component {
     render() {
         var actuators = [];
-        this.props.data.actuators.forEach(x => {
-            actuators.push(<SimpleActuator data={x} key={x.name}></SimpleActuator>);
-        });
+        var name = null;
+        var renderState = null;
+        var renderGeneraOnOff = null;
+        if (!!this.props.data) {
+            if (!!this.props.data.actuators) {
+                this.props.data.actuators.forEach(x => {
+                    actuators.push(<SimpleActuator data={x} key={x.name}></SimpleActuator>);
+                });
+            }
+            renderState = !!this.props.data.state ?<RoomState data={this.props.data.state}></RoomState> : null; 
+            name = !!this.props.data.name ? this.props.data.name : null;
+            if (actuators.length !== 0)
+                renderGeneraOnOff = <GeneralOnOff data={actuators}></GeneralOnOff>;
+        }
         return (
-            <div>
-                <h2 className="center aligned header form-head">{this.props.data.name}</h2>
-                <RoomState data={this.props.data.state}></RoomState>
+            <div className="room">
+                <h2 className="center aligned header form-head">{name}</h2>
+                {renderState}
                 {actuators}
-                <GeneralOnOff data={actuators}></GeneralOnOff>                
+                {renderGeneraOnOff}
             </div>
         );
     }

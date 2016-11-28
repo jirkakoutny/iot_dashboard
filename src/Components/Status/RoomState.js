@@ -4,11 +4,19 @@ import { Card, Grid, Statistic, Icon } from 'semantic-ui-react'
 
 class RoomState extends Component {
     render() {
-        var temperature = this.props.data.temperature + ' °C';
-        var humidity = this.props.data.humidity + '%';
-        var light = this.props.data.light + '%';
-        var move = this.props.data.move ? 'Ano' : 'Ne';
-        var timestamp = this.props.data.timestamp;
+        var temperature = '-- °C';
+        var humidity = '--%';
+        var light = '--%';
+        var move = '--';
+        var timestamp = '--';
+
+        if (!!this.props.data) {
+            temperature = (!!this.props.data.temperature ? this.props.data.temperature : '--') + ' °C';
+            humidity = (!!this.props.data.humidity ? this.props.data.humidity : '--') + '%';
+            light = (!!this.props.data.light ? this.props.data.light : '--') + '%';
+            move = !!this.props.data.move && this.props.data.move ? 'Ano' : 'Ne';
+            timestamp = !!this.props.data.timestamp ? this.props.data.timestamp : '--';
+        }
         return (
             <Card centered>
                 <Card.Content>

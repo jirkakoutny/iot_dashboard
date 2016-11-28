@@ -8,9 +8,11 @@ import OnOff from './OnOff'
 class SimpleActuator extends Component {
     render() {
         var actions = [];
-        this.props.data.actions.forEach(x => {
-            actions.push(<Action data={x} key={x.name}></Action>);
-        });
+        if (!!this.props.data.actions) {
+            this.props.data.actions.forEach(x => {
+                actions.push(<Action data={x} key={x.name}></Action>);
+            });
+        }
         return (
             <Card centered>
                 <Card.Content>
@@ -24,6 +26,7 @@ class SimpleActuator extends Component {
                 </Card.Content>
             </Card>
         );
+
     }
 }
 
