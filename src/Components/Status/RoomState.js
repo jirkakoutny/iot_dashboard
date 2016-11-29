@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import moment from 'moment';
+
 import { Card, Grid, Statistic, Icon } from 'semantic-ui-react'
 
 class RoomState extends Component {
@@ -11,11 +13,11 @@ class RoomState extends Component {
         var timestamp = '--';
 
         if (!!this.props.data) {
-            temperature = (!!this.props.data.temperature ? this.props.data.temperature : '--') + ' °C';
-            humidity = (!!this.props.data.humidity ? this.props.data.humidity : '--') + '%';
-            light = (!!this.props.data.light ? this.props.data.light : '--') + '%';
+            temperature = (!!this.props.data.temperature ? this.props.data.temperature.toFixed(2) : '--') + ' °C';
+            humidity = (!!this.props.data.humidity ? this.props.data.humidity.toFixed(2) : '--') + '%';
+            light = (!!this.props.data.light ? this.props.data.light.toFixed(0) : '--') + '%';
             move = !!this.props.data.move && this.props.data.move ? 'Ano' : 'Ne';
-            timestamp = !!this.props.data.timestamp ? this.props.data.timestamp : '--';
+            timestamp = !!this.props.data.timestamp ? moment().from(this.props.data.timestamp) : '--';
         }
         return (
             <Card centered>
