@@ -38,9 +38,9 @@ class App extends Component {
             console.log('Data loaded...');
         });
         this.timer = setInterval(() => {
-            var room = this.state.room;     // TODO Tooo bad
-            this.setState({room: room});
-        }, 500);
+            this.forceUpdate();
+            console.log('Fired...');
+        }, 60000);
     }
 
     componentWillUnmount() {
@@ -76,6 +76,7 @@ class App extends Component {
     // }
 
     render() {
+                    console.log('Rendered...');
         return (
             <div className="ui one column center aligned grid">
                 <div className="column ten wide form-holder">
