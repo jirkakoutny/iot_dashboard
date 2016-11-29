@@ -9,6 +9,8 @@ import Room from './Components/Room'
 
 import logo from '../public/img/logo.png'
 
+import TimerMixin from 'react-timer-mixin';
+
 import * as firebase from 'firebase';
 
 var config = {
@@ -25,7 +27,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            room: null
+            room: null,
         };
     }
 
@@ -35,6 +37,14 @@ class App extends Component {
             this.setState({ room: snap.val() });
             console.log('Data loaded...');
         });
+        this.timer = setInterval(() => {
+            var room = this.state.room;     // TODO Tooo bad
+            this.setState({room: room});
+        }, 500);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timer);
     }
 
     // componentDidMount() {
