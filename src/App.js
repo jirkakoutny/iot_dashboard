@@ -9,7 +9,7 @@ import Room from './Components/Room'
 
 import logo from '../public/img/logo.png'
 
-import TimerMixin from 'react-timer-mixin';
+import moment from 'moment';
 
 import * as firebase from 'firebase';
 
@@ -21,6 +21,8 @@ var config = {
     messagingSenderId: "777387298764"
 };
 firebase.initializeApp(config);
+
+moment.locale('cs');
 
 class App extends Component {
 
@@ -76,7 +78,7 @@ class App extends Component {
     // }
 
     render() {
-                    console.log('Rendered...');
+        console.log('Rendered...');
         return (
             <div className="ui one column center aligned grid">
                 <div className="column ten wide form-holder">

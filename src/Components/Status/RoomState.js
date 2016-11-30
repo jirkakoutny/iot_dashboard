@@ -17,7 +17,7 @@ class RoomState extends Component {
             humidity = (!!this.props.data.humidity ? this.props.data.humidity.toFixed(2) : '--') + '%';
             light = (!!this.props.data.light ? this.props.data.light.toFixed(0) : '--') + '%';
             move = !!this.props.data.move && this.props.data.move ? 'Ano' : 'Ne';
-            timestamp = !!this.props.data.timestamp ? moment().from(this.props.data.timestamp) : '--';
+            timestamp = !!this.props.data.timestamp ? moment(this.props.data.timestamp, "X").fromNow() : '--';
         }
         return (
             <Card centered>
